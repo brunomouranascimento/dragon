@@ -1,0 +1,44 @@
+@import '~src/scss/_mixins.scss';
+
+.app-card {
+  display: inline-block;
+  height: 195px;
+  width: 300px;
+  margin: 1rem;
+  position: relative;
+  margin-bottom: 21px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+
+  @include device(smartphone) {
+    width: 343px;
+  }
+
+  &.flipped-card {
+    transform: rotateY(180deg);
+  }
+
+  .app-card_front {
+    transform: rotateY(0deg);
+  }
+
+  .app-card_back {
+    transform: rotateY(180deg);
+  }
+
+  .app-card_front,
+  .app-card_back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+
+    button {
+      float: right;
+      right: 10px;
+      top: 10px;
+    }
+  }
+}

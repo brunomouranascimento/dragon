@@ -1,0 +1,37 @@
+<header *ngIf="isLoggedIn$ | async as isLoggedIn">
+  <div class="app-navbar">
+    <div class="app-navbar_wrapper">
+      <div class="app-navbar_toolbox">
+        <button class="app-navbar_user-button" matTooltip="Informações do usuário" mat-button [matMenuTriggerFor]="userSettings">
+          <div class="wrapper">
+            <div class="avatar-wrapper">
+              <span>
+                <i class="avatar material-icons">
+                  account_circle
+                </i>
+              </span>
+            </div>
+            <span class="username">
+              Bruno Nascimento
+            </span>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </div>
+        </button>
+        <mat-menu #userSettings="matMenu" [overlapTrigger]="false" xPosition="before">
+          <button mat-menu-item [matMenuTriggerFor]="themes">
+            <mat-icon>color_lens</mat-icon>
+            <span>Temas</span>
+          </button>
+          <mat-menu #themes="matMenu">
+            <button mat-menu-item (click)="changeTheme('light')">Light</button>
+            <button mat-menu-item (click)="changeTheme('default')">Dark</button>
+          </mat-menu>
+          <button mat-menu-item (click)="onLogout()">
+            <mat-icon>power_settings_new</mat-icon>
+            <span>Sair</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</header>

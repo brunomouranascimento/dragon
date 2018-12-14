@@ -1,0 +1,25 @@
+* {
+  font-family: 'Exo Regular', sans-serif;
+  text-rendering: optimizeLegibility;
+
+  &:active,
+  :focus {
+    outline: none !important;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #DADCDE;
+  margin: 0;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

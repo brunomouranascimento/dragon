@@ -1,0 +1,28 @@
+<div class="app-login" *ngIf="isShowLogin$ | async as isShowLogin">
+  <div class="app-login_wrapper">
+    <div class="app-login_header">
+      <span class="application_name">Dragon</span>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)" autocomplete="off">
+      <div class="app-login_form">
+        <mat-form-field appearance="outline">
+          <mat-label>Usuário</mat-label>
+          <input matInput formControlName="userName">
+          <span matSuffix>
+            <mat-icon class="mat-18">account_box</mat-icon>
+          </span>
+          <!-- <mat-error *ngIf="loginForm.controls['email'].invalid">E-mail inválido</mat-error> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" formControlName="password">
+          <span matSuffix>
+            <mat-icon class="mat-18">lock</mat-icon>
+          </span>
+          <!-- <mat-error *ngIf="loginForm.controls['email'].invalid">Digite uma senha</mat-error> -->
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit" value="Login" [disabled]="loginForm.invalid">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="app-card" [ngClass]="{'flipped-card': flipped}">
+  <div class="app-card_front">
+    <button mat-mini-fab (click)="flipCard()" color="accent" matTooltip="Histories">
+      <mat-icon>
+        notes
+      </mat-icon>
+    </button>
+    <ng-content select=".front"></ng-content>
+  </div>
+  <div class="app-card_back">
+    <button mat-mini-fab (click)="flipCard()" color="accent" matTooltip="Informações">
+      <mat-icon>
+        info
+      </mat-icon>
+    </button>
+    <ng-content select=".back"></ng-content>
+  </div>
+</div>

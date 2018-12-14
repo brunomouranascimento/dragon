@@ -1,0 +1,43 @@
+@import '~src/scss/_mixins.scss';
+
+.app-dragons {
+  padding-top: 64px;
+
+  .front, .back {
+    padding: 15px;
+
+    .dragon-controls {
+      position: relative;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+  }
+  .mat-fab {
+    position: fixed;
+    bottom: 10%;
+    right: 4%;
+    opacity: 0.3;
+    transition: all ease .2s;
+
+    @include device(smartphone) {
+      bottom: 4%;
+      right: 8%;
+      opacity: 1;
+    }
+
+    @include device(smartphone-landscape) {
+      bottom: 11%;
+      right: 5%;
+      opacity: 1;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
