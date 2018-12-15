@@ -1,16 +1,22 @@
 .app-dragon-detail {
-  margin: auto;
   width: 90vw;
-  padding-top: 80px;
+  padding-top: 55px;
+  margin: auto;
 
+  .app-dragon-detail_name {
+    text-align: center;
+  }
 
   .app-dragon-detail_wrapper {
-    padding-top: 64px;
-    height: 40vh;
-    display: flex;
+    margin-top: 25px;
+    height: auto;
     flex-direction: column-reverse;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 
+    .dragon-form{
+      padding: 15px;
+      justify-content: space-between;
+    }
 
     .app-dragon-detail_controls {
       border-top: solid 1px;

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DragonsService } from './dragons.service';
 import { Dragon } from 'src/app/models/dragon';
+import { MatDialog } from '@angular/material';
+import { DragonsRemoveComponent } from './dragons-remove/dragons-remove.component';
 
 @Component({
   selector: 'app-dragons',
@@ -12,11 +14,9 @@ import { Dragon } from 'src/app/models/dragon';
 export class DragonsComponent implements OnInit {
 
   dragons: Dragon[];
-  name = '';
-  path: string[] = ['dragon'];
+  name = 'name';
 
-
-  constructor(private dragonsService: DragonsService, private router: Router) { }
+  constructor(private dragonsService: DragonsService, private router: Router, public dialog: MatDialog) { }
 
   addDragon() {
     sessionStorage.setItem('addMode', 'true');
@@ -28,22 +28,16 @@ export class DragonsComponent implements OnInit {
     sessionStorage.removeItem('addMode');
   }
 
-  onRemoveDragon(slug: string) {
-    this.removeDragon(slug);
-  }
-
-  removeDragon(slug: string) {
-    this.dragonsService.deleteDragon(slug).subscribe(data => {
-      if (data['ok'] === 1) {
-        this.ngOnInit();
-      }
+  onRemoveDragon(slug: string): void {
+    const dialogRef = this.dialog.open(DragonsRemoveComponent, { data: slug });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
     });
   }
 
   ngOnInit() {
     this.dragonsService.getDragons().subscribe(data => {
       this.dragons = data['items'] as Dragon[];
-      console.log(this.dragons);
     });
   }
 }

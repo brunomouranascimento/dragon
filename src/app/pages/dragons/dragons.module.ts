@@ -5,24 +5,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragonsComponent } from './dragons.component';
 import { DragonDetailComponent } from './dragon-detail/dragon-detail.component';
 
-
 import { ComponentsModule } from 'src/app/components/components.module';
 import { MaterialModule } from 'src/app/components/@material/material.module';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { DragonsService } from './dragons.service';
-import { DragonOrderPipe } from './dragon-order.pipe';
+import { DragonsRemoveComponent } from './dragons-remove/dragons-remove.component';
 
 
 @NgModule({
-  declarations: [DragonsComponent, DragonOrderPipe, DragonDetailComponent],
+  declarations: [DragonsComponent, DragonDetailComponent, DragonsRemoveComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     ComponentsModule,
-    MaterialModule
+    MaterialModule,
+    OrderModule
   ],
-  exports: [DragonsComponent, DragonDetailComponent],
+  exports: [DragonsComponent, DragonDetailComponent, DragonsRemoveComponent],
   providers: [DragonsService]
 })
 export class DragonsModule { }

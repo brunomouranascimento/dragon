@@ -11,7 +11,7 @@
           <span matSuffix>
             <mat-icon class="mat-18">account_box</mat-icon>
           </span>
-          <!-- <mat-error *ngIf="loginForm.controls['email'].invalid">E-mail inválido</mat-error> -->
+          <mat-error *ngIf="loginForm.controls['userName'].invalid">Usuário obrigatório</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
@@ -19,7 +19,7 @@
           <span matSuffix>
             <mat-icon class="mat-18">lock</mat-icon>
           </span>
-          <!-- <mat-error *ngIf="loginForm.controls['email'].invalid">Digite uma senha</mat-error> -->
+          <mat-error *ngIf="loginForm.controls['password'].invalid">Digite uma senha</mat-error>
         </mat-form-field>
         <button mat-raised-button color="accent" type="submit" value="Login" [disabled]="loginForm.invalid">Login</button>
       </div>

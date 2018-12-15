@@ -13,7 +13,7 @@
     background-color: mat-color($primary);
   }
 
-  .app-card_front, .app-card_back, .app-dragon-detail_wrapper {
+  .app-card_front, .app-card_back, .app-dragon-detail_wrapper, .mat-snack-bar-container {
     background-color: mat-color($background, background);
     color: mat-color($foreground, text);
   }

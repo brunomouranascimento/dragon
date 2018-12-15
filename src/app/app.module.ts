@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { AuthenticationService } from './authentication/authentication.service';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { ComponentsModule } from './components/components.module';
+import { DragonsRemoveComponent } from './pages/dragons/dragons-remove/dragons-remove.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ComponentsModule } from './components/components.module';
     PagesModule
   ],
   providers: [AuthenticationService, AuthenticationGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DragonsRemoveComponent]
 })
 export class AppModule { }

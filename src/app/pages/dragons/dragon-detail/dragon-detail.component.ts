@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 import { Subscription } from 'rxjs';
 import { Dragon } from 'src/app/models/dragon';
@@ -22,7 +23,8 @@ export class DragonDetailComponent implements OnInit {
       private router: Router,
       private activatedRoute: ActivatedRoute,
       private dragonService: DragonsService,
-      private formBuilder: FormBuilder) { }
+      private formBuilder: FormBuilder,
+      public snackBar: MatSnackBar) { }
 
   cancel() {
     this.router.navigate(['/']);
@@ -31,17 +33,29 @@ export class DragonDetailComponent implements OnInit {
   updateDragon(slug: string, dragon: Dragon) {
     this.dragonService.updateDragon(slug, dragon).subscribe(data => {
       if (data['ok'] === 1) {
+        if (sessionStorage.getItem('addMode')) {
+          this.openSnackBar(`Dragão ${dragon.name} foi adicionado`, 'OK');
+        } else {
+          this.openSnackBar(`Dragão ${dragon.name} foi alterado`, 'OK');
+        }
         this.router.navigate(['/']);
       }
     });
   }
 
   addDragon(dragon: Dragon) {
+    dragon.histories.toString().split(',');
     this.dragonService.addDragon(dragon).subscribe(data => {
       if (data['ok'] === 1) {
         sessionStorage.removeItem('addMode');
         this.router.navigate(['/']);
       }
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
     });
   }
 
@@ -55,7 +69,6 @@ export class DragonDetailComponent implements OnInit {
           const slug = params['slug'];
           this.dragonService.getDragon(slug).subscribe((data: Dragon) => {
             this.dragon = data;
-            console.log(data);
           });
         }
       );

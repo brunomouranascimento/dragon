@@ -1,34 +1,41 @@
 <div class="app-dragon-detail">
+  <h1 *ngIf="!addMode" class="app-dragon-detail_name">{{ dragon.name }}</h1>
+  <h1 *ngIf="addMode" class="app-dragon-detail_name">Adicionar novo Dragão</h1>
+
+  <hr>
   <div class="app-dragon-detail_wrapper">
     <form [formGroup]="dragonForm" (ngSubmit)="updateDragon(dragon.slug, dragon)" autocomplete="off">
-      <mat-form-field appearance="outline">
-        <mat-label>Nome</mat-label>
-        <input matInput formControlName="name" [(ngModel)]="dragon.name">
-        <span matSuffix>
-          <mat-icon class="mat-18">account_box</mat-icon>
-        </span>
-        <mat-error *ngIf="dragonForm.controls['name'].invalid">Nome obrigatório</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Tipo</mat-label>
-        <input matInput formControlName="type" [(ngModel)]="dragon.type">
-        <span matSuffix>
-          <mat-icon class="mat-18">lock</mat-icon>
-        </span>
-        <mat-error *ngIf="dragonForm.controls['type'].invalid">Tipo obrigatório</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Histories</mat-label>
-        <input matInput formControlName="histories" [(ngModel)]="dragon.histories">
-        <span matSuffix>
-          <mat-icon class="mat-18">lock</mat-icon>
-        </span>
-      </mat-form-field>
-    <div class="app-dragon-detail_controls">
-      <button mat-raised-button (click)="cancel()">CANCELAR</button>
-      <button *ngIf="!addMode" mat-raised-button color=accent type="submit" value="Dragon" [disabled]="dragonForm.invalid">SALVAR</button>
-      <button *ngIf="addMode"  mat-raised-button color=accent type="submit" value="Dragon" [disabled]="dragonForm.invalid" (click)="addDragon(dragonForm.value)">SALVAR</button>
-    </div>
-  </form>
+      <div class="dragon-form">
+        <div class="row">
+          <div class="col-md-12" style="display: grid;">
+            <mat-form-field appearance="outline" hintLabel="O nome deve ter no máximo 20 caracteres">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="name" maxlength="20" [(ngModel)]="dragon.name">
+              <mat-error *ngIf="dragonForm.controls['name'].invalid">Nome obrigatório</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" hintLabel="O nome deve ter no máximo 15 caracteres">
+              <mat-label>Tipo</mat-label>
+              <input matInput formControlName="type" maxlength="20" [(ngModel)]="dragon.type">
+              <mat-error *ngIf="dragonForm.controls['type'].invalid">Tipo obrigatório</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12" style="display: grid;">
+            <mat-form-field appearance="outline" hintLabel="Separe as histórias por virgula">
+              <mat-label>Histórias</mat-label>
+              <textarea matInput formControlName="histories" [(ngModel)]="dragon.histories"></textarea>
+            </mat-form-field>
+            <p *ngIf="!addMode" style="text-align: center">Criado em: {{ dragon.created_at | date:'dd/MM/yyyy HH:mm:ss'
+              }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="app-dragon-detail_controls">
+        <button mat-raised-button (click)="cancel()">CANCELAR</button>
+        <button *ngIf="!addMode" mat-raised-button color=accent type="submit" value="Dragon" [disabled]="dragonForm.invalid">SALVAR</button>
+        <button *ngIf="addMode" mat-raised-button color=accent value="Dragon" [disabled]="dragonForm.invalid" (click)="addDragon(dragonForm.value)">ADICIONAR</button>
+      </div>
+    </form>
   </div>
 </div>

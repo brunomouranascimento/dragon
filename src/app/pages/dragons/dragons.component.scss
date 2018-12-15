@@ -1,7 +1,11 @@
 @import '~src/scss/_mixins.scss';
 
 .app-dragons {
-  padding-top: 64px;
+  padding-top: 55px;
+
+  .app-dragons_title {
+    text-align: center;
+  }
 
   .front, .back {
     padding: 15px;

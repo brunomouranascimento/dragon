@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+  <p>Deseja excluir o Dragão {{ dragon.name }}?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color=accent cdkFocusInitial (click)="removeDragon(dragon)">Excluir</button>
+</div>
