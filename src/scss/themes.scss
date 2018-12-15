@@ -34,7 +34,8 @@
   .mat-form-field.mat-focused .mat-form-field-label,
   .app-navbar_wrapper,
   .mat-icon-button,
-  .mat-raised-button.mat-accent {
+  .mat-raised-button.mat-accent,
+  .application_name {
     color: mat-color($foreground, text);
     caret-color: mat-color($foreground, text);
   }
