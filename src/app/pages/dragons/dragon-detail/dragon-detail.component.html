@@ -11,12 +11,12 @@
             <mat-form-field appearance="outline" hintLabel="O nome deve ter no máximo 20 caracteres">
               <mat-label>Nome</mat-label>
               <input matInput formControlName="name" maxlength="20" [(ngModel)]="dragon.name">
-              <mat-error *ngIf="dragonForm.controls['name'].invalid">Nome obrigatório</mat-error>
+              <mat-error *ngIf="dragonForm.controls['name'].invalid">{{ getNameErrorMessage() }}</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline" hintLabel="O nome deve ter no máximo 15 caracteres">
+            <mat-form-field appearance="outline" hintLabel="O tipo deve ter no máximo 15 caracteres">
               <mat-label>Tipo</mat-label>
               <input matInput formControlName="type" maxlength="20" [(ngModel)]="dragon.type">
-              <mat-error *ngIf="dragonForm.controls['type'].invalid">Tipo obrigatório</mat-error>
+              <mat-error *ngIf="dragonForm.controls['name'].invalid">{{ getTypeErrorMessage() }}</mat-error>
             </mat-form-field>
           </div>
         </div>

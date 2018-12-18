@@ -18,6 +18,7 @@ export class DragonDetailComponent implements OnInit {
   dragon = <Dragon>{};
   dragonForm: FormGroup;
   addMode = false;
+  regexDragon = '^(?:[A-Za-z]+)(?:[A-Za-z0-9 _]*)$';
 
   constructor(
       private router: Router,
@@ -59,6 +60,16 @@ export class DragonDetailComponent implements OnInit {
     });
   }
 
+  getNameErrorMessage() {
+    return this.dragonForm.get('name').hasError('pattern') ? 'O nome do Dragão não pode iniciar com espaços' :
+          this.dragonForm.get('name').hasError('required') ? 'O nome é obrigatório' : '';
+  }
+
+  getTypeErrorMessage() {
+    return this.dragonForm.get('type').hasError('pattern') ? 'O tipo do Dragão não pode iniciar com espaços' :
+          this.dragonForm.get('type').hasError('required') ? 'O tipo é obrigatório' : '';
+  }
+
   ngOnInit() {
     if (sessionStorage.getItem('addMode')) {
       this.addMode = true;
@@ -74,9 +85,9 @@ export class DragonDetailComponent implements OnInit {
       );
     }
     this.dragonForm = this.formBuilder.group({
-      name: ['' || this.dragon.name, Validators.required],
-      type: ['', Validators.required],
-      histories: [['Senhor dos Anéis']]
+      name: ['', Validators.compose([Validators.required, Validators.pattern(this.regexDragon)])],
+      type: ['', Validators.compose([Validators.required, Validators.pattern(this.regexDragon)])],
+      histories: ['']
     });
   }
 }
